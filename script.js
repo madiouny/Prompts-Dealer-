@@ -1,76 +1,74 @@
 const prompts = [
   {
-    topic: "Digital Marketing & Sales",
-    title: "🚀 Advanced Facebook Ad Copy",
-    desc: "Generate persuasive Facebook ad copy that increases clicks and conversions by targeting specific demographics with tailored messages and emotional triggers."
+    topic: "💼 تحسين السيرة الذاتية والمقابلات",
+    title: "🔥 Expert CV & Interview Coach",
+    desc: `Create a tailored CV that stands out and get ready for interviews with advanced tips to impress recruiters and secure the job. Includes behavioral questions and answers, and personalized feedback prompts.`,
+    premium: true,
+    exampleResponse: `Thank you for choosing Promptify! Here's a tailored CV template and interview preparation tips to boost your success in job applications on our site.`
   },
   {
-    topic: "Digital Marketing & Sales",
-    title: "📈 SEO Keyword Strategy",
-    desc: "Develop a comprehensive SEO keyword strategy focusing on long-tail keywords, competitor analysis, and content optimization for higher Google rankings."
+    topic: "🧠 تعلم مهارات جديدة بسرعة",
+    title: "🚀 Rapid Skill Acquisition Guide",
+    desc: `Learn any new skill quickly with scientifically-backed techniques including spaced repetition, deliberate practice, and focused learning plans.`,
+    premium: false,
+    exampleResponse: `Promptify helps you master new skills fast with proven methods and motivational advice tailored for your learning style.`
   },
   {
-    topic: "Productivity & Time Management",
-    title: "⏰ Pomodoro Technique Planner",
-    desc: "Create a detailed Pomodoro schedule that maximizes focus periods and includes breaks to boost productivity and avoid burnout."
+    topic: "🤑 تسويق رقمي وزيادة المبيعات",
+    title: "📈 Digital Marketing & Sales Booster",
+    desc: `Design high-converting campaigns, analyze your audience, and optimize sales funnels using AI-powered strategies and personalized marketing prompts.`,
+    premium: true,
+    exampleResponse: `Use our digital marketing blueprint from Promptify to increase your sales and build stronger customer relationships effectively.`
   },
   {
-    topic: "Productivity & Time Management",
-    title: "📅 Weekly Task Prioritization",
-    desc: "Organize your week by priority and deadlines using Eisenhower’s urgent-important matrix to focus on impactful tasks first."
+    topic: "🎯 تحسين الإنتاجية وتنظيم الوقت",
+    title: "⏰ Productivity & Time Management",
+    desc: `Master techniques to organize your day, set SMART goals, and use productivity hacks to achieve more without burnout.`,
+    premium: false,
+    exampleResponse: `Promptify supports you with daily productivity templates and time-blocking prompts for a balanced, effective workflow.`
   },
   {
-    topic: "Instagram & TikTok Content",
-    title: "🎬 Viral TikTok Video Ideas",
-    desc: "Generate trendy and unique TikTok video concepts designed to increase engagement and follower growth, including hashtag recommendations."
+    topic: "📱 محتوى TikTok وReels جذاب",
+    title: "🎥 Viral TikTok & Reels Creator",
+    desc: `Generate catchy video ideas, scripts, and hashtags to maximize reach and engagement on TikTok and Instagram Reels.`,
+    premium: false,
+    exampleResponse: `Promptify fuels your creativity with trending content formulas and audience insights to boost your social media presence.`
   },
   {
-    topic: "Instagram & TikTok Content",
-    title: "📱 Reels Caption Writer",
-    desc: "Craft captivating captions for Instagram Reels to grab attention and encourage viewer interaction using humor or curiosity."
+    topic: "✍️ كتابة إيميلات احترافية تقنع وتبيع",
+    title: "📧 Professional Email Writer",
+    desc: `Write persuasive and professional emails that grab attention, build rapport, and close deals with easy-to-use templates and AI guidance.`,
+    premium: true,
+    exampleResponse: `With Promptify's email prompts, communicate clearly and effectively to increase your business opportunities and client trust.`
+  },
+  {
+    topic: "🧘 تهدئة القلق وتحفيز العقل",
+    title: "🌿 Anxiety Relief & Mind Motivation",
+    desc: `Use mindfulness exercises, positive affirmations, and mental strategies to reduce anxiety and boost mental clarity.`,
+    premium: false,
+    exampleResponse: `Promptify encourages your well-being with calming prompts and motivational quotes tailored to your daily mental health needs.`
   }
 ];
 
 const container = document.getElementById("prompts");
-const messageCopy = document.createElement("div");
-messageCopy.className = "message-copy";
-messageCopy.textContent = "Copied to clipboard!";
-document.body.appendChild(messageCopy);
-
-function renderPrompts() {
-  container.innerHTML = "";
-  prompts.forEach((p, i) => {
-    const promptDiv = document.createElement("div");
-    promptDiv.className = "prompt";
-    promptDiv.style.animationDelay = `${i * 0.15}s`;
-    promptDiv.innerHTML = `
-      <h2>${p.title}</h2>
-      <p>${p.desc}</p>
-      <button class="copy-btn">Copy Prompt 📋</button>
-    `;
-
-    const copyBtn = promptDiv.querySelector(".copy-btn");
-    copyBtn.addEventListener("click", () => {
-      navigator.clipboard.writeText(`${p.title}\n\n${p.desc}\n\nGenerated from Promptify.com`);
-      showCopyMessage();
-    });
-
-    container.appendChild(promptDiv);
-  });
-}
+const copyMsg = document.getElementById("copy-msg");
+const themeBtn = document.getElementById("toggle-theme");
 
 function showCopyMessage() {
-  messageCopy.classList.add("show");
-  setTimeout(() => {
-    messageCopy.classList.remove("show");
-  }, 1800);
+  copyMsg.classList.add("show");
+  setTimeout(() => copyMsg.classList.remove("show"), 2000);
 }
 
-// Dark mode toggle
-const toggleBtn = document.getElementById("toggle-theme");
-toggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("light");
-  toggleBtn.textContent = document.body.classList.contains("light") ? "🌞" : "🌙";
-});
-
-renderPrompts();
+function renderPrompts(topicFilter = null) {
+  container.innerHTML = "";
+  const filtered = topicFilter ? prompts.filter(p => p.topic === topicFilter) : prompts;
+  filtered.forEach((p, i) => {
+    const div = document.createElement("div");
+    div.className = "prompt";
+    div.style.animationDelay = `${i * 0.15}s`;
+    div.innerHTML = `
+      <h2>${p.title}</h2>
+      <p>${p.desc}</p>
+      <button class="copy-btn" data-prompt="${encodeURIComponent(p.desc)}">Copy Prompt 📋</button>
+    `;
+    container.append
