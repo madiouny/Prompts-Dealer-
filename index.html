@@ -2,44 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Promptify - Smart Prompt Dealer</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🚀 Promptify</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
   <div class="container">
     <header>
       <h1 class="logo">🚀 Promptify</h1>
-      <p class="subtitle">Sell powerful AI prompts in style</p>
+      <p class="subtitle">Sell killer AI prompts with style</p>
+      <button id="toggle-theme" aria-label="Toggle Dark Mode">🌙</button>
     </header>
-
-    <div class="topic-selector">
-      <label for="topics">Choose a topic:</label>
-      <select id="topics">
-        <option value="cv">💼 CV & Interview Optimization</option>
-        <option value="skills">🧠 Learn New Skills Fast</option>
-        <option value="marketing">🤑 Digital Marketing</option>
-        <option value="productivity">🎯 Productivity & Time</option>
-        <option value="content">📱 TikTok & Reels Content</option>
-        <option value="emails">✍️ Email Writing for Sales</option>
-        <option value="calm">🧘 Anxiety & Motivation</option>
-      </select>
-      <button id="generate">Generate Prompt</button>
-    </div>
-
-    <div id="prompt-display" class="prompt-box">
-      <h2 id="prompt-title"></h2>
-      <pre id="prompt-text"></pre>
-      <button id="copy-btn">📋 Copy Prompt</button>
-      <p id="copy-msg" class="hidden">✅ Prompt copied!</p>
-    </div>
-
-    <footer>
-      <p>Made with ❤️ by Promptify | © 2025</p>
-    </footer>
+    <main id="prompts"></main>
+    <footer>Made with ❤️ by You</footer>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
