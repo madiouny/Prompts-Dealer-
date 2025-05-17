@@ -72,3 +72,123 @@ function renderPrompts(topicFilter = null) {
       <button class="copy-btn" data-prompt="${encodeURIComponent(p.desc)}">Copy Prompt 📋</button>
     `;
     container.append
+    const websiteName = "Promptify";
+
+const topics = [
+  {
+    topic: "💼 تحسين السيرة الذاتية والمقابلات",
+    description: "Create a tailored CV that stands out and get ready for interviews with advanced tips to impress recruiters and secure the job."
+  },
+  {
+    topic: "🧠 تعلم مهارات جديدة بسرعة",
+    description: "Learn any new skill quickly with scientifically-backed techniques including spaced repetition, deliberate practice, and focused learning plans."
+  },
+  {
+    topic: "🤑 تسويق رقمي وزيادة المبيعات",
+    description: "Design high-converting campaigns, analyze your audience, and optimize sales funnels using AI-powered strategies and personalized marketing prompts."
+  },
+  {
+    topic: "🎯 تحسين الإنتاجية وتنظيم الوقت",
+    description: "Master techniques to organize your day, set SMART goals, and use productivity hacks to achieve more without burnout."
+  }
+];
+
+const container = document.getElementById("topics-container");
+let openedIndex = null;
+
+function generateAdvancedPrompt(topic) {
+  // Here create a random advanced prompt mentioning the website name
+  const templates = [
+    `Using ${websiteName}, craft a comprehensive and tailored strategy for ${topic} that combines innovative AI tools with proven human techniques to maximize efficiency and results.`,
+    `${websiteName} empowers users to excel in ${topic} by offering detailed workflows, expert advice, and actionable prompts that elevate skill and output.`,
+    `Leverage ${websiteName}’s AI capabilities to produce advanced plans and creative ideas for ${topic}, ensuring user success and continual improvement.`,
+    `Discover how ${websiteName} revolutionizes ${topic} through personalized prompt generation, enhancing user productivity and mastery step-by-step.`,
+  ];
+  // pick a random template
+  return templates[Math.floor(Math.random() * templates.length)];
+}
+
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    showCopyMessage();
+  });
+}
+
+const copyMsg = document.createElement("div");
+copyMsg.id = "copy-msg";
+copyMsg.className = "copy-message";
+copyMsg.textContent = "Copied to clipboard!";
+document.body.appendChild(copyMsg);
+
+function showCopyMessage() {
+  copyMsg.classList.add("show");
+  setTimeout(() => copyMsg.classList.remove("show"), 2000);
+}
+
+function renderTopics() {
+  container.innerHTML = "";
+  topics.forEach((t, i) => {
+    const card = document.createElement("div");
+    card.className = "topic-card";
+    card.textContent = t.topic;
+    card.onclick = () => togglePromptBox(i);
+    container.appendChild(card);
+
+    // create prompt box but hide by default
+    const promptBox = document.createElement("div");
+    promptBox.className = "prompt-box";
+    promptBox.style.display = "none";
+
+    promptBox.innerHTML = `
+      <p>${t.description}</p>
+      <button class="generate-btn">Generate Prompt</button>
+      <div class="generated-prompt"></div>
+      <button class="copy-btn" style="display:none;">Copy Generated Prompt</button>
+    `;
+    container.appendChild(promptBox);
+
+    // add listeners for generate and copy
+    const genBtn = promptBox.querySelector(".generate-btn");
+    const genPromptDiv = promptBox.querySelector(".generated-prompt");
+    const copyBtn = promptBox.querySelector(".copy-btn");
+
+    genBtn.onclick = (e) => {
+      const prompt = generateAdvancedPrompt(t.topic);
+      genPromptDiv.textContent = prompt;
+      copyBtn.style.display = "inline-block";
+    };
+
+    copyBtn.onclick = () => {
+      if (genPromptDiv.textContent) copyToClipboard(genPromptDiv.textContent);
+    };
+  });
+}
+
+function togglePromptBox(index) {
+  const boxes = document.querySelectorAll(".prompt-box");
+  if (openedIndex !== null && openedIndex !== index) {
+    boxes[openedIndex].style.display = "none";
+  }
+  const box = boxes[index];
+  if (box.style.display === "block") {
+    box.style.display = "none";
+    openedIndex = null;
+  } else {
+    box.style.display = "block";
+    openedIndex = index;
+  }
+}
+
+renderTopics();
+
+// Dark mode toggle
+
+const themeBtn = document.getElementById("toggle-theme");
+themeBtn.onclick = () => {
+  document.body.classList.toggle("dark");
+  if(document.body.classList.contains("dark")){
+    themeBtn.textContent = "☀️ Light Mode";
+  } else {
+    themeBtn.textContent = "🌙 Dark Mode";
+  }
+};
