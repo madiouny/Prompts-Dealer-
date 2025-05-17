@@ -60,6 +60,10 @@ button:hover {
   background: #00bcd4;
 }
 
+.generate-btn {
+  margin-bottom: 2rem;
+}
+
 footer {
   margin-top: 4rem;
   color: #666;
@@ -80,4 +84,20 @@ footer {
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .prompt {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
 }
