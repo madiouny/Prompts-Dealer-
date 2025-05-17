@@ -149,4 +149,65 @@ footer {
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
+}.topic-card {
+  background: #222;
+  color: #fff;
+  padding: 1.3rem 1.5rem;
+  border-radius: 12px;
+  margin: 1rem auto;
+  max-width: 700px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,255,255,0.2);
+  transition: background 0.3s ease;
+  position: relative;
 }
+
+body.dark .topic-card {
+  background: #333;
+  box-shadow: 0 0 15px rgba(0,255,255,0.3);
+}
+
+.topic-card:hover {
+  background: #00bcd4;
+  color: #111;
+}
+
+.prompt-box {
+  background: #111;
+  margin: 1rem auto 2rem;
+  max-width: 700px;
+  color: #0ff;
+  padding: 1rem 1.3rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00f0ff88;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+body.dark .prompt-box {
+  background: #222;
+}
+
+button.generate-btn, button.copy-btn {
+  background: #00f0ff;
+  border: none;
+  color: #111;
+  font-weight: bold;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 0.8rem;
+  transition: background 0.3s ease;
+}
+
+button.generate-btn:hover, button.copy-btn:hover {
+  background: #00bcd4;
+}
+
+.generated-prompt {
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  user-select: text;
+}
+
