@@ -1,8 +1,8 @@
 :root {
-  --bg-color-light: #f5f5f5;
-  --text-color-light: #222;
-  --bg-color-dark: #121212;
-  --text-color-dark: #eee;
+  --bg-light: #f0f0f0;
+  --text-light: #222;
+  --bg-dark: #121212;
+  --text-dark: #eee;
   --accent-color: #00f0ff;
   --accent-hover: #00bcd4;
 }
@@ -10,126 +10,100 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: var(--bg-color-dark);
-  color: var(--text-color-dark);
+  background: var(--bg-light);
+  color: var(--text-light);
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-body.light {
-  background: var(--bg-color-light);
-  color: var(--text-color-light);
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
 }
 
 .container {
   max-width: 900px;
   margin: auto;
-  padding: 2rem 1rem;
+  padding: 2rem;
   text-align: center;
-}
-
-header {
-  position: relative;
-  margin-bottom: 2rem;
 }
 
 .logo {
   font-size: 3rem;
-  background: linear-gradient(45deg, var(--accent-color), #ff00e0);
+  background: linear-gradient(45deg, #00f0ff, #ff00e0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: float 3s ease-in-out infinite;
-  display: inline-block;
-  margin: 0;
+  margin-bottom: 0.2rem;
 }
 
 .subtitle {
-  color: inherit;
-  opacity: 0.7;
+  color: #555;
+  margin-bottom: 1.5rem;
   font-size: 1.2rem;
-  margin-top: 0.3rem;
   animation: fadeIn 1.5s ease;
 }
 
-#toggle-theme {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: transparent;
+.theme-btn {
+  background: var(--accent-color);
   border: none;
-  font-size: 1.5rem;
+  color: #111;
+  font-weight: bold;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
   cursor: pointer;
-  color: inherit;
-  transition: color 0.3s ease;
-  padding: 0.3rem 0.6rem;
-  border-radius: 6px;
+  transition: background 0.3s ease;
+  margin-bottom: 2rem;
 }
 
-#toggle-theme:hover {
-  color: var(--accent-hover);
-}
-
-#prompts {
-  display: flex;
-  flex-direction: column;
-  gap: 1.8rem;
+.theme-btn:hover {
+  background: var(--accent-hover);
 }
 
 .prompt {
   background: #222;
-  padding: 1.5rem 2rem 1.5rem 1.5rem;
+  color: #fff;
+  padding: 1.5rem;
   border-radius: 12px;
+  margin: 1.5rem auto;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.15);
   max-width: 600px;
-  margin: 0 auto;
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
-  display: flex;
-  flex-direction: column;
-  animation: fadeUp 0.8s ease;
+  text-align: left;
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeUp 0.8s ease;
 }
 
-body.light .prompt {
-  background: #eaeaea;
-  color: var(--text-color-light);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-}
-
-.prompt:hover {
-  transform: translateY(-6px);
+body.dark .prompt {
+  background: #333;
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
 
 .prompt h2 {
-  margin: 0 0 0.6rem 0;
-  font-weight: 600;
-  font-size: 1.3rem;
-  text-align: left;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
 }
 
 .prompt p {
-  text-align: left;
+  margin: 0 0 1.2rem 0;
   line-height: 1.4;
-  flex-grow: 1;
   font-size: 1rem;
-  margin: 0;
 }
 
-.copy-btn {
-  margin-top: 1rem;
-  align-self: flex-end;
+.prompt button.copy-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
   background: var(--accent-color);
   border: none;
   color: #111;
-  font-weight: 700;
-  padding: 0.5rem 1.3rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease;
-  user-select: none;
 }
 
-.copy-btn:hover {
+.prompt button.copy-btn:hover {
   background: var(--accent-hover);
 }
 
@@ -140,22 +114,23 @@ footer {
   user-select: none;
 }
 
-.message-copy {
+#copy-msg {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   background: var(--accent-color);
   color: #111;
-  padding: 0.6rem 1rem;
-  border-radius: 12px;
-  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
-  font-weight: 700;
+  padding: 0.7rem 1.2rem;
+  border-radius: 25px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease;
+  font-weight: 600;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
 }
 
-.message-copy.show {
+#copy-msg.show {
   opacity: 1;
   pointer-events: auto;
 }
