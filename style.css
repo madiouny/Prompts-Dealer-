@@ -60,14 +60,33 @@ button:hover {
   background: #00bcd4;
 }
 
-.generate-btn {
-  margin-bottom: 2rem;
-}
-
 footer {
   margin-top: 4rem;
   color: #666;
   font-size: 0.9rem;
+}
+
+.generate-section {
+  margin-top: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.prompt-output {
+  background: #111;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre-wrap;
+  color: #0ff;
+  min-height: 200px;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+  user-select: text;
+  overflow-y: auto;
+  max-height: 300px;
 }
 
 /* Animations */
@@ -84,20 +103,4 @@ footer {
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .prompt {
-    margin: 1rem;
-    padding: 1rem;
-  }
-
-  .logo {
-    font-size: 2.5rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-  }
 }
